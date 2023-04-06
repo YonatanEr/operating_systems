@@ -10,11 +10,17 @@
 #include <stdbool.h>
 #include <string.h>
 
-
-void parse_line(char* line, char*** words_ptr);
+void read_line(char** line_ptr);
 
 bool string_starts_with(char* str, char* prefix);
+
+void string_copy(char** dst_ptr, char** src_ptr);
     
+int count_words(char* line);
+
+bool is_empty_line(char* line);
+
+char rstrip(char c);
 
 #endif
 

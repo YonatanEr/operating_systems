@@ -1,14 +1,21 @@
-
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <unistd.h>
- 
-int main(void) {
-  char *binaryPath = "/bin/ls";
-  //char *binaryPath = "ls";
-  char *args[] = {binaryPath, "-l", "/home", NULL};
-  execv(binaryPath, args);
-  perror("Return from execvp() not expected");
+#include <string.h>
+
+
+int main ()
+{
+  //char str[] ="- This,       a sample string.";
+  //char str[] ="";
+  char str[] ="        a       v      ";
+  char * pch;
+  printf("Splitting string \"%s\" into tokens:\n\n\n",str);
+  pch = strtok (str," ");
+  while (pch != NULL)
+  {
+    printf("token = %s\n",pch);
+    int d = strlen(pch);
+    printf("len = %d\n\n\n\n\n",d);
+    pch = strtok (NULL, " ,.");
+  }
   return 0;
 }

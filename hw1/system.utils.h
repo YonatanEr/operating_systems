@@ -10,7 +10,7 @@
 #include "string.utils.h"
 
 
-void execute_command(char* line, bool* continue_reading_ptr);
+void execute_command(char* command, bool* continue_reading_ptr);
 
 void execute_exit(char* command);
 

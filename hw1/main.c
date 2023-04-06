@@ -15,20 +15,30 @@ bool is_background_cmd(char* str) {
 
 int main() {
     bool terminate = false;
-    char command[MaxLineLength+1];
     int wstatus;
     pid_t pid;
+    char* command;
     while (!feof(stdin) && !terminate) {
         fprintf(stdout, "hw1shell$ ");
-        fgets(command, MaxLineLength+1, stdin);
-        if (is_background_cmd(command)) {
+        read_line(&command);
+        if (is_empty_line(command)) {
+            free(command);
+            continue;
+        }
+
+        else if (is_background_cmd(command)) {
             pid = fork();
+            execute_command(command, &terminate);
             waitpid(pid, &wstatus, 0);
         }
+
         else {
             execute_command(command, &terminate);
         }
+
+        fprintf(stdout, "\n");
+        free(command);
     }
-    printf("process %d exiting\n", getpid());   
     return 0;
 }
+
