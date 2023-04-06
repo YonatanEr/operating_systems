@@ -1,10 +1,14 @@
-#include <unistd.h> // execlp()
-#include <stdio.h>  // perror()
-#include <stdlib.h> // EXIT_SUCCESS, EXIT_FAILURE
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <unistd.h>
+ 
 int main(void) {
-  printf("FLAG");
-  execlp("open", "open", "-a", "Safari", "http://apple.com/", NULL);
-  perror("Return from execlp() not expected");
-  exit(EXIT_FAILURE);
+  char *binaryPath = "/bin/ls";
+  //char *binaryPath = "ls";
+  char *args[] = {binaryPath, "-l", "/home", NULL};
+  execv(binaryPath, args);
+  perror("Return from execvp() not expected");
+  return 0;
 }

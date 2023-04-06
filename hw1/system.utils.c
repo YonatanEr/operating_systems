@@ -48,15 +48,24 @@ void execute_jobs(char* command) {
 
 
 void execute_external_command(char* command) {
+    char* file_path;
     char** words;
     parse_line(command, &words);
     printf("execute_external_command\n");
     printf("COMMAND = %s\n", command);
+    file_path = (char*) malloc ((6+strlen(words[0]+1)) * sizeof(char));
+    sprintf(file_path, "/bin/%s", words[0]);
+
+
+    printf("%s\n", file_path);
+
     for (int i=0; i<MaxWords; i++) {
         if (words[i] == NULL) break;
         printf("%s\n", words[i]);
     }
-    execv(words[0], words);
+
+    execv(file_path, words);
+    free(file_path);
     free(words);
     perror("Return from execvp() not expected");
 } 
