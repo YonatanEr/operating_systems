@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "__config": "c",
+        "stdlib.h": "c",
+        "stdbool.h": "c",
+        "stdio.h": "c",
+        "unistd.h": "c",
+        "string.utils.h": "c",
+        "system.utils.h": "c"
+    }
+}
