@@ -6,6 +6,8 @@
         "stdio.h": "c",
         "unistd.h": "c",
         "string.utils.h": "c",
-        "system.utils.h": "c"
+        "system.utils.h": "c",
+        "print.format.h": "c",
+        "sstream": "c"
     }
 }

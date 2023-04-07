@@ -3,10 +3,13 @@
 
 void read_line(char** line_ptr) {
     size_t size = MaxLineLength;
-    char* line = (char*) malloc ((size+1)*sizeof(char));
+    char* line = (char*) malloc ((MaxLineLength+1)*sizeof(char));
     assert(line);
-    line[size] = '\0';
+    line[MaxLineLength] = '\0';
     getline(&line, &size, stdin);
+    for (int i=0; i<MaxLineLength; i++) {
+        line[i] = strip(line[i]);
+    }
     *line_ptr = line;
 }
 
@@ -55,7 +58,7 @@ bool is_empty_line(char* line) {
 }
 
 
-char rstrip(char c) {
+char strip(char c) {
     if (c < 20) {
         return '\0';
     }

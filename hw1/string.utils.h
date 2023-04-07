@@ -8,7 +8,9 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "print.format.h"
 #include <string.h>
+
 
 void read_line(char** line_ptr);
 
@@ -20,7 +22,8 @@ int count_words(char* line);
 
 bool is_empty_line(char* line);
 
-char rstrip(char c);
+char strip(char c);
+
 
 #endif
 

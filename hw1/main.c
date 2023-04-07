@@ -1,43 +1,46 @@
+#define MaxBackgroundProcesses 4
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include "print.format.h"
 #include "string.utils.h"
 #include "system.utils.h"
 
 
-bool is_background_cmd(char* str) {
-    return (str[strlen(str)-1] == '&');
+void clean_zombie_processes(){
+    return;
+}
+
+
+bool validate_background(char* command, int* background_processes_counter_ptr) {
+    if (!is_background_command(command)) {
+        return true;
+    }
+    if (*background_processes_counter_ptr < MaxBackgroundProcesses){
+        (*background_processes_counter_ptr) ++; 
+        return true;
+    }
+    fprintf_background_overflow();
+    return false;
 }
 
 
 int main() {
     bool terminate = false;
-    int wstatus;
-    pid_t pid;
+    int background_processes_counter=0;
     char* command;
     while (!feof(stdin) && !terminate) {
-        fprintf(stdout, "hw1shell$ ");
+        fprintf_shell();
         read_line(&command);
-        if (is_empty_line(command)) {
-            free(command);
-            continue;
-        }
-
-        else if (is_background_cmd(command)) {
-            pid = fork();
-            execute_command(command, &terminate);
-            waitpid(pid, &wstatus, 0);
-        }
-
-        else {
+        if (validate_background(command, &background_processes_counter)) {
             execute_command(command, &terminate);
         }
-
-        fprintf(stdout, "\n");
         free(command);
+        clean_zombie_processes();
     }
     return 0;
 }
