@@ -2,17 +2,22 @@
 
 
 void read_line(char** line_ptr) {
+    int i;
     size_t size = MaxLineLength;
-    char* line = (char*) malloc ((MaxLineLength+1)*sizeof(char));
+    char* line = (char*) calloc ((MaxLineLength+1), sizeof(char));
     assert(line);
     line[MaxLineLength] = '\0';
     getline(&line, &size, stdin);
-    for (int i=0; i<MaxLineLength; i++) {
+    for (i=0; i<MaxLineLength; i++) {
         line[i] = strip(line[i]);
+    }
+    i = MaxLineLength;
+    while(line[i] <= 32) {
+        line[i] = '\0';
+        i--;
     }
     *line_ptr = line;
 }
-
 
 
 bool string_starts_with(char* str, char* prefix) {
@@ -49,6 +54,7 @@ int count_words(char* line) {
         token = strtok(NULL, " ");
     }  
     free(line_copy);
+    line_copy = NULL;
     return count; 
 }
 
@@ -63,4 +69,17 @@ char strip(char c) {
         return '\0';
     }
     return c;
+}
+
+
+void get_substring(char** str_ptr, char** sub_str_ptr, int ind) {
+    char* str = *str_ptr;
+    int i, str_len = strlen(str);
+    char* res = (char*) calloc (str_len-ind+1, sizeof(char));
+    assert(res);
+    for (i=ind; i<str_len; i++) {
+        res[i-ind] = str[i];
+    }
+    res[str_len-ind] = '\0';
+    *sub_str_ptr = res;
 }

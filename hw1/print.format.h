@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/syscall.h>
-#include <sys/_types.h> 
 #include <unistd.h>
 #include <errno.h>
 

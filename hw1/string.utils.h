@@ -8,6 +8,8 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <sys/wait.h>
+#include <sys/syscall.h>
 #include "print.format.h"
 #include <string.h>
 
@@ -23,6 +25,8 @@ int count_words(char* line);
 bool is_empty_line(char* line);
 
 char strip(char c);
+
+void get_substring(char** str_ptr, char** sub_str_ptr, int ind);
 
 
 #endif

@@ -16,12 +16,12 @@ void fprintf_background_overflow(){
 }
 
 
-void fprintf_background_process_started(pid_t pid) {
+void fprintf_background_process_started(int pid) {
     fprintf(stdout, "hw1shell: pid %d started\n", pid);
 }
 
 
-void fprintf_background_process_finished(pid_t pid) {
+void fprintf_background_process_finished(int pid) {
     fprintf(stdout, "hw1shell: pid %d finished\n", pid);
 }
 
@@ -33,7 +33,6 @@ void fprintf_syscall_fail(char* syscall_name, int error_number) {
 
 void fprint_words(char** words) {
     int i=0;
-    fprintf(stdout, "\n\n\n");
     while (words[i] != NULL) {
         fprintf(stdout, "word[%d] = %s\n", i, words[i]);
         i++;
@@ -42,5 +41,5 @@ void fprint_words(char** words) {
 
 
 void fprint_command(char* command) {
-    fprintf(stdout, "%s", command);
+    fprintf(stdout, "%s\n", command);
 }

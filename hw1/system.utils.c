@@ -2,23 +2,52 @@
 
 
 bool is_background_command(char* command) {
-    return (command[strlen(command)-1] == '&');
+    int i=strlen(command);
+    while (command[i] <= 32) {
+        if (command[i] == '&') {
+            return true;
+        }
+        i--;
+    }
+    return false;
 }
 
+
+bool is_exit_command(char* command) {
+    if (string_starts_with(command, "exit")){
+        return command[4] <= 32;
+    } 
+    return false;
+}
+
+
+bool is_cd_command(char* command) {
+    if (string_starts_with(command, "cd")){
+        return command[2] <= 32;
+    } 
+    return false;
+}
+
+
+bool is_jobs_command(char* command) {
+    if (string_starts_with(command, "jobs")){
+        return command[2] <= 4;
+    } 
+    return false;
+}
+
+
 void execute_command(char* command, bool* terminate_ptr) {
-    if (is_empty_line(command)) {
-        return;
-    }
-    if (string_starts_with(command, "exit")) {
+    if (is_exit_command(command)) {
         execute_exit(command);
         *terminate_ptr = true;
         return;
     }
-    if (string_starts_with(command, "cd")) {
+    if (is_cd_command(command)) {
         execute_cd(command);
         return;
     }
-    if (string_starts_with(command, "jobs")) {
+    if (is_jobs_command(command)) {
         execute_jobs(command);
         return;
     }
@@ -30,16 +59,24 @@ void execute_exit(char* command) {
     int res = 0;
     if (res != 0){
         fprintf_invalid_command();
-        fprintf_syscall_fail(command, errno);
+        fprintf_syscall_fail("exit", errno);
+        fprint_command(command); // To be deleted
     }
 }
 
 
 void execute_cd(char* command) {
-    int res = chdir(command);
+    if (count_words(command) != 2) { 
+        fprintf_invalid_command();
+        return;
+    }
+    char* directory;
+    get_substring(&command, &directory, 3);
+    int res = chdir(directory);
+    free(directory);
+    directory = NULL;
     if (res != 0){
         fprintf_invalid_command();
-        fprintf_syscall_fail(command, errno);
     }
 }
 
@@ -48,50 +85,32 @@ void execute_jobs(char* command) {
     int res = 0;
     if (res  != 0) { 
         fprintf_invalid_command();
-        fprintf_syscall_fail(command, errno);
+        fprintf_syscall_fail("jobs", errno);
+        fprint_command(command); // To be deleted
     }
 }
 
 
 void execute_external_command(char* command) {
-    int i, words_amount = count_words(command);
-    char* words[words_amount+1];
-    char* command_copy;
-    char* token;
-    string_copy(&command_copy, &command);
-    token = strtok(command_copy, " ");
-    for (i=0; i<words_amount; i++) {
-        words[i] = (char*) malloc ((strlen(token)+1) * sizeof(char));
-        assert(words[i]);
-        strcpy(words[i], token);
-        token = strtok(NULL, " ");
-    }
-    free(command_copy);
-    words[words_amount] = NULL;
-
-    execute_subprocess(words);
-
-    for (i=0; i<words_amount; i++) {
-        free(words[i]);
-    }
-} 
-
-
-void execute_subprocess(char* words[]) {
-    int returnStatus;
+    int returnStatus, saved_errno = errno;
     pid_t child_pid = fork();
+    char* arg_lst[] = {"sh", "-c", command, NULL};        
+    
     if (child_pid < 0) {        
         fprintf_syscall_fail("fork", errno); 
     }
-    else if (child_pid == 0) {        
-        execvp(words[0], words);
+
+    else if (child_pid == 0) {      
+        execvp("/bin/sh", arg_lst);   
         exit(1);
     }
+
     else {
         waitpid(child_pid, &returnStatus, 0);
-        if (returnStatus != 0)      
-        {
+        if (returnStatus != 0) {
+            fprintf_syscall_fail("exec", errno); 
             fprintf_invalid_command();
         }
     }
+    errno = saved_errno;
 }

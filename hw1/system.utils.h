@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/syscall.h>
-#include <sys/_types.h> 
 #include <unistd.h>
 #include <errno.h>
 #include "print.format.h"
@@ -22,8 +21,6 @@ void execute_cd(char* command);
 void execute_jobs(char* command);
 
 void execute_external_command(char* command);
-
-void execute_subprocess(char* words[]);
 
 
 #endif

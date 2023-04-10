@@ -10,6 +10,10 @@
 #include "string.utils.h"
 #include "system.utils.h"
 
+void handle_exit(){
+    return;
+}
+
 
 void clean_zombie_processes(){
     return;
@@ -33,15 +37,17 @@ int main() {
     bool terminate = false;
     int background_processes_counter=0;
     char* command;
-    while (!feof(stdin) && !terminate) {
+    while (!terminate) {
         fprintf_shell();
         read_line(&command);
         if (validate_background(command, &background_processes_counter)) {
             execute_command(command, &terminate);
         }
         free(command);
+        command = NULL;
         clean_zombie_processes();
     }
+    handle_exit();
     return 0;
 }
 
