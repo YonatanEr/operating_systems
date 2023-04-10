@@ -12,7 +12,7 @@ void read_line(char** line_ptr) {
         line[i] = strip(line[i]);
     }
     i = MaxLineLength;
-    while(line[i] <= 32) {
+    while(0<=i && line[i]<=32) {
         line[i] = '\0';
         i--;
     }

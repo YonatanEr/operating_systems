@@ -3,7 +3,7 @@
 
 bool is_background_command(char* command) {
     int i=strlen(command);
-    while (command[i] <= 32) {
+    while (0<=i && command[i]<=32) {
         if (command[i] == '&') {
             return true;
         }
