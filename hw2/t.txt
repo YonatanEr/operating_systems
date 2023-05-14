@@ -1,0 +1,4 @@
+msleep 1
+msleep 10
+msleep 100
+msleep 1000
