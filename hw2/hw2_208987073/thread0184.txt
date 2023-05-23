@@ -1,0 +1,16 @@
+TIME 1740: START job decrement 0
+TIME 1759: END job decrement 0
+TIME 1761: START job decrement 0
+TIME 1809: END job decrement 0
+TIME 1810: START job decrement 0
+TIME 1853: END job decrement 0
+TIME 1883: START job decrement 1
+TIME 1907: END job decrement 1
+TIME 1908: START job msleep 1 
+TIME 1909: END job msleep 1 
+TIME 1911: START job decrement 1
+TIME 1958: END job decrement 1
+TIME 1959: START job msleep 10
+TIME 1970: END job msleep 10
+TIME 1972: START job msleep 10
+TIME 1984: END job msleep 10

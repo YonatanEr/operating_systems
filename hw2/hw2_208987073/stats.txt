@@ -1,0 +1,5 @@
+total running time: 2018
+sum of jobs turnaround time: 85845
+min job turnaround time: 1
+average job turnaround time: 26
+max job turnaround time: 129

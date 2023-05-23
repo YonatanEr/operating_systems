@@ -1,0 +1,31 @@
+decrement 0
+increment 0
+decrement 0; decrement 0
+increment 0; increment 0
+repeat 50; decrement 0
+dispatcher_wait
+repeat 50; increment 0
+repeat 100; decrement 0; decrement 0
+repeat 100; increment 0; increment 0
+msleep 1
+msleep 1; msleep 10
+repeat 5; msleep 1; msleep 10; msleep 100
+repeat 100; decrement 0; decrement 0; msleep 1 
+repeat 100; increment 0; increment 0; msleep 1; msleep 10
+repeat 100; decrement 0; msleep 1 
+repeat 100; increment 0; msleep 10
+decrement 1; decrement 1
+increment 1; increment 1
+repeat 50; decrement 1
+dispatcher_wait
+repeat 50; increment 1
+repeat 100; decrement 1; decrement 1
+repeat 100; increment 1; increment 1
+msleep 1
+msleep 1; msleep 10
+repeat 5; msleep 1; msleep 10; msleep 100
+repeat 100; decrement 1; decrement 1; msleep 1 
+repeat 100; increment 1; increment 1; msleep 1; msleep 10
+repeat 100; decrement 1; msleep 1 
+repeat 100; increment 1; msleep 10
+increment 1

@@ -1,4 +1,0 @@
-dispatcher_msleep 1
-dispatcher_msleep 10
-dispatcher_msleep 100
-dispatcher_msleep 1000

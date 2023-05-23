@@ -1,0 +1,31 @@
+TIME 1717: read cmd line decrement 0
+TIME 1717: read cmd line increment 0
+TIME 1717: read cmd line decrement 0; decrement 0
+TIME 1718: read cmd line increment 0; increment 0
+TIME 1718: read cmd line repeat 50; decrement 0
+TIME 1720: read cmd line dispatcher_wait
+TIME 1734: read cmd line repeat 50; increment 0
+TIME 1737: read cmd line repeat 100; decrement 0; decrement 0
+TIME 1741: read cmd line repeat 100; increment 0; increment 0
+TIME 1748: read cmd line msleep 1
+TIME 1748: read cmd line msleep 1; msleep 10
+TIME 1748: read cmd line repeat 5; msleep 1; msleep 10; msleep 100
+TIME 1750: read cmd line repeat 100; decrement 0; decrement 0; msleep 1 
+TIME 1775: read cmd line repeat 100; increment 0; increment 0; msleep 1; msleep 10
+TIME 1807: read cmd line repeat 100; decrement 0; msleep 1 
+TIME 1818: read cmd line repeat 100; increment 0; msleep 10
+TIME 1834: read cmd line decrement 1; decrement 1
+TIME 1834: read cmd line increment 1; increment 1
+TIME 1835: read cmd line repeat 50; decrement 1
+TIME 1838: read cmd line dispatcher_wait
+TIME 1878: read cmd line repeat 50; increment 1
+TIME 1879: read cmd line repeat 100; decrement 1; decrement 1
+TIME 1883: read cmd line repeat 100; increment 1; increment 1
+TIME 1889: read cmd line msleep 1
+TIME 1889: read cmd line msleep 1; msleep 10
+TIME 1890: read cmd line repeat 5; msleep 1; msleep 10; msleep 100
+TIME 1891: read cmd line repeat 100; decrement 1; decrement 1; msleep 1 
+TIME 1916: read cmd line repeat 100; increment 1; increment 1; msleep 1; msleep 10
+TIME 1947: read cmd line repeat 100; decrement 1; msleep 1 
+TIME 1957: read cmd line repeat 100; increment 1; msleep 10
+TIME 1973: read cmd line increment 1
