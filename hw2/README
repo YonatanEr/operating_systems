@@ -1,6 +1,0 @@
-In order to run ny test you should do the following:
-	make clean
-	make
-	./hw2 test.txt 400 2 1
-
-yonatanerez Yonatan Erez 208987073

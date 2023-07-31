@@ -1,4 +1,4 @@
-CC = gcc -w -lpthread
+CC = gcc -w -pthread
 
 .SILENT: make
 .SILENT: clean
